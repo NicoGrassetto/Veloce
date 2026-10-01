@@ -13,6 +13,8 @@
 
 <p align="center">
   <a href="#overview">Overview</a> ·
+  <a href="#architecture">Architecture</a> ·
+  <a href="#how-it-works">How it works</a> ·
   <a href="LICENSE">License</a>
 </p>
 
@@ -23,6 +25,10 @@ Veloce is a software engineering harness designed to help people and agents buil
 The project brings together clear instructions, repeatable workflows, and practical guardrails so that planning, implementation, review, and verification remain consistent as software evolves.
 
 Veloce is intentionally tool- and model-agnostic. The goal is not to prescribe a single way to write software, but to provide a dependable foundation that teams can adapt to their own stack and standards.
+
+## Architecture
+
+## How it works
 
 ## License
 
