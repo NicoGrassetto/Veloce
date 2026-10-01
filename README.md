@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/veloce-github-header.gif" alt="Veloce" width="187" />
+  <img src=".github/assets/veloce-github-header.gif" alt="Veloce" width="224" />
 </p>
 
 <p align="center">
