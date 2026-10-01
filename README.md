@@ -4,7 +4,7 @@
 
 <p align="center">
   <strong>A software engineering harness for craftsmen and software artisans.</strong><br />
-  Build software with discipline, clarity, and care.
+  Build software for humans and AI, by humans and AI.
 </p>
 
 <p align="center">
