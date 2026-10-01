@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".github/assets/veloce-github-header.gif" alt="Veloce" />
+</p>
+
 # Veloce
 A software engineering harness for craftsmen and software artisans.
 
