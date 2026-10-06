@@ -55,3 +55,14 @@ Python 3.11 FastAPI backend, PostgreSQL 15 database.
 - Testing Standards (`docs/testing-standards.md`) — Reference when writing tests
 
 Every instruction should document its source ("why was this rule added?"), applicability condition ("when is this rule needed?"), and expiry condition ("under what circumstances can this rule be removed?").
+
+## At session start (clock in)
+1. Read PROGRESS.md for current state
+2. Read DECISIONS.md for important decisions
+3. Run make check to confirm repo is in consistent state
+4. Continue from PROGRESS.md "Next Steps" section
+
+## Before session end (clock out)
+1. Update PROGRESS.md
+2. Run make check to confirm consistent state
+3. Commit all completed work
