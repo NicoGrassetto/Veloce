@@ -1,0 +1,63 @@
+name: Sync agent instructions
+
+on:
+  push:
+    paths:
+      - AGENTS.md
+      - CLAUDE.md
+      - .github/copilot-instructions.md
+      - scripts/sync-agent-instructions.py
+      - .github/workflows/sync-agent-instructions.yml
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Instruction file to use as the source of truth
+        required: true
+        default: AGENTS.md
+        type: choice
+        options:
+          - AGENTS.md
+          - CLAUDE.md
+          - .github/copilot-instructions.md
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-agent-instructions-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Synchronize instruction files
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          MANUAL_SOURCE: ${{ inputs.source }}
+          BASE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            python3 scripts/sync-agent-instructions.py --source "$MANUAL_SOURCE"
+          else
+            python3 scripts/sync-agent-instructions.py --base "$BASE_SHA" --head "$HEAD_SHA"
+          fi
+
+      - name: Commit synchronized files
+        run: |
+          if git diff --quiet -- AGENTS.md CLAUDE.md .github/copilot-instructions.md; then
+            echo "Instruction files are already synchronized."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add AGENTS.md CLAUDE.md .github/copilot-instructions.md
+          git commit -m "chore: sync agent instructions"
+          git push origin "HEAD:${GITHUB_REF}"

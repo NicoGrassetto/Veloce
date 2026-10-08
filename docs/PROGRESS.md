@@ -1,7 +1,7 @@
 # Project Progress
 
 ## Current State
-- Latest commit: abc1234 (feat: add user preferences endpoint)
+- Latest commit: {{latest_commit}} (feat: {{feat}})
 - Test status: 42/43 passing (test_pagination_edge_case failing)
 - Lint: passing
 

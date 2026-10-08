@@ -30,6 +30,19 @@ Veloce is intentionally tool- and model-agnostic. The goal is not to prescribe a
 
 ## How it works
 
+Agent instructions are kept identical across the formats used by the supported
+tools:
+
+- `AGENTS.md` for OpenCode and other AGENTS.md-compatible agents
+- `CLAUDE.md` for Claude Code
+- `.github/copilot-instructions.md` for GitHub Copilot
+
+The `Sync agent instructions` GitHub Actions workflow detects which instruction
+file changed, copies it to the other formats, and commits the synchronized
+files. If multiple instruction files change with different content, the
+workflow stops to avoid discarding edits. It can also be run manually by
+selecting the source file in the Actions tab.
+
 ## License
 
 Veloce is available under the [MIT License](LICENSE).
