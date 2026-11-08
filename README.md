@@ -43,6 +43,23 @@ files. If multiple instruction files change with different content, the
 workflow stops to avoid discarding edits. It can also be run manually by
 selecting the source file in the Actions tab.
 
+### Markdown line limit
+
+Check a Markdown file inside this repository's `docs/` directory with Node.js:
+
+```sh
+node scripts/check-markdown-lines.js docs/PROGRESS.md
+```
+
+The script prints `true` for files with at most 150 lines. Otherwise it prints
+the reason to stderr before printing `false` to stdout, and exits with status 1
+(status 0 on success). Blank lines count; a final newline does not add an extra
+line. Paths are relative to the current directory, or absolute.
+
+JavaScript callers can import `checkMarkdownLineLimit` from the script; it
+returns a boolean and prints a diagnostic on failure. Run its tests with
+`node --test scripts/check-markdown-lines.test.js`.
+
 ## License
 
 Veloce is available under the [MIT License](LICENSE).

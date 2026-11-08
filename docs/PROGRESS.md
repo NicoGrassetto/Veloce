@@ -1,6 +1,10 @@
 # Project Progress
 
 ## Session Update (2026-11-08)
+- Added `scripts/check-markdown-lines.js` to check Markdown files in `docs/`
+  against a 150-line maximum, with boolean results and failure diagnostics.
+- Documented CLI/import usage and added Node.js tests for line-count boundaries,
+  newline formats, invalid paths, and exit statuses.
 - Added the standalone Caveman skill under `skills/caveman` and exposed it for
   project skill discovery through `.agents/skills/caveman`.
 - `make check` is unavailable because this repository has no Makefile or
