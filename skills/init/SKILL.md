@@ -1,6 +1,6 @@
 ---
 name: init
-description: Initialize project documentation when the user invokes /init or asks to initialize a project. Creates or updates docs/DECISIONS.md, docs/ARCHITECTURE.md, docs/PROGRESS.md and docs/FEATURES.md using repository evidence and confirmed requirements.
+description: Initialize project documentation when the user invokes /init or asks to initialize a project. Creates AGENTS.md only when missing and creates or updates docs/DECISIONS.md, docs/ARCHITECTURE.md, docs/PROGRESS.md and docs/FEATURES.md using repository evidence and confirmed requirements.
 ---
 
 # Project initialization
@@ -8,6 +8,7 @@ description: Initialize project documentation when the user invokes /init or ask
 Prepare a project for reliable agent work by creating these files at the
 repository root:
 
+- `AGENTS.md` (only if it does not already exist)
 - `docs/DECISIONS.md`
 - `docs/ARCHITECTURE.md`
 - `docs/PROGRESS.md`
@@ -47,6 +48,46 @@ On repeated runs, read all four files first. Preserve valid decisions, history,
 feature IDs, verification results and user edits. Add missing sections or update
 facts supported by evidence; do not reset progress or overwrite the documents
 wholesale. Surface conflicts before replacing existing decisions.
+
+### AGENTS.md
+
+Create `AGENTS.md` at the repository root only if it does not already exist.
+Leave an existing `AGENTS.md` unchanged and follow its instructions. When
+creating it, incorporate applicable conventions from other existing agent
+instruction files and respect any repository synchronization policy.
+
+```markdown
+# Agent Instructions
+
+## Project Overview
+## Quick Start
+## Hard Constraints
+## Topic Docs
+- [Architecture](docs/ARCHITECTURE.md)
+- [Decisions](docs/DECISIONS.md)
+- [Progress](docs/PROGRESS.md)
+- [Features](docs/FEATURES.md)
+
+## At Session Start
+1. Read docs/PROGRESS.md and docs/DECISIONS.md.
+2. Run the documented baseline verification command when available.
+3. Continue from docs/PROGRESS.md "Next Steps".
+
+## Work Rules
+- Work on one feature at a time.
+- Verify the current feature before starting the next.
+- Keep changes scoped to the active feature.
+
+## Before Session End
+1. Update docs/PROGRESS.md with completed work and blockers.
+2. Run the documented verification commands and record the results.
+3. Follow the repository commit policy; preserve unrelated changes.
+```
+
+Populate the overview, quick-start commands and constraints from repository
+evidence and confirmed requirements. Include each constraint's source,
+applicability and reconsideration condition, linking to decision IDs where
+appropriate. Do not invent commands, policies or technology choices.
 
 ### docs/DECISIONS.md
 
@@ -151,7 +192,9 @@ states, preserve its authority and do not manually change those states.
 ## 3. Verify and hand off
 
 Check that all four documents exist, contain project-specific content and agree
-on commands, decisions, feature IDs and current state. Ensure a new agent can
+on commands, decisions, feature IDs and current state. Check that root
+`AGENTS.md` exists and, if it predated initialization, remains unchanged.
+Ensure a new agent can
 find how to run the project, how to verify it and what to do next from these
 documents alone.
 
@@ -164,5 +207,6 @@ failed checks as blockers without claiming the project is ready.
 
 Finish by reporting which documents were created or updated and any unresolved
 blockers. Follow repository commit policy, preserving unrelated working-tree
-changes. Initialization is complete when all four documents are populated;
+changes. Initialization is complete when all four documents are populated and
+root `AGENTS.md` exists;
 project readiness is a separate claim requiring its documented checks to pass.

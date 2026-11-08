@@ -1,6 +1,8 @@
 # Project Progress
 
 ## Session Update (2026-11-08)
+- Extended `/init` to create root `AGENTS.md` only when missing, with
+  project-specific instructions and links to the four documentation files.
 - Added `/init` under `skills/init`, exposed through `.agents/skills/init`, to
   create or reconcile the four project documentation files. Documented its use
   in the README.

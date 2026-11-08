@@ -38,6 +38,8 @@ Invoke `/init` to initialize project documentation using the
 `docs/FEATURES.md` with the project's decisions, architecture, current state and
 verifiable feature list. Existing documentation and history are preserved;
 unknowns and unavailable verification commands are recorded explicitly.
+It also creates a root `AGENTS.md` with project-specific agent instructions
+when that file does not already exist, leaving existing instructions unchanged.
 
 The skill lives in `skills/init` and is exposed for project skill discovery
 through `.agents/skills/init`.
