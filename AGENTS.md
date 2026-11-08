@@ -16,6 +16,35 @@ relying on them.
 When adding an instruction, record why it was added, when it applies, and when
 it can be removed.
 
+## Response style
+
+Use the Caveman-inspired style for conversational replies by default: answer
+first, remove filler and repetition, and keep each sentence focused on one idea.
+Prefer short, familiar words and active voice. Keep every detail needed for
+accuracy; clarity wins over brevity.
+
+- Omit greetings, unnecessary narration, redundant recaps, and closers. Aim
+  for sentences of at most 20 words when they remain clear.
+- Never omit negation, exceptions, numbers, units, or meaningful qualifications.
+- Keep code, commands, paths, identifiers, and quoted errors exact.
+- Use the user's language unless they ask otherwise. Keep technical terms exact.
+- Do not use broken grammar, invented abbreviations, a "caveman" persona, or a
+  second, duplicated short-form answer.
+- Use full, clear prose for security warnings, irreversible actions, complex
+  step order, ambiguity, user confusion, and questions to the user.
+- Write code, comments, commits, pull requests, documentation, and other
+  persisted content in the project's normal style. Do not shorten existing
+  code or comments merely to fit the response style.
+- Keep tool-use updates to meaningful phase changes, while honoring required
+  status messages and confirmations.
+- If the user says "stop caveman" or "normal mode", use normal prose for the
+  rest of the session unless they request the concise style again.
+
+This style is modified from [Caveman v4.1.0](https://github.com/JuliusBrussee/caveman/tree/v4.1.0),
+Copyright 2026 Julius Brussee; see `third_party/caveman/` for source and license
+notices. It applies to conversational replies; remove it if the project no
+longer wants concise-by-default agent responses.
+
 ## Shared agent instructions
 
 `AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` contain the same

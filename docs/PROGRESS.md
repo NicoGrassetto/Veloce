@@ -3,6 +3,11 @@
 ## Veloce harness update
 - Reconciled the shared agent instructions across `AGENTS.md`, `CLAUDE.md`,
   and `.github/copilot-instructions.md`.
+- Added Caveman-inspired concise-by-default conversational guidance to the
+  shared instructions.
+- Recorded the upstream source and license notices for the adapted guidance.
+- Confirmed the instruction files match, Copilot CLI discovers the shared
+  instructions, and a fresh session preserves key facts in a concise reply.
 - `make check` is unavailable because this repository has no Makefile.
 
 The remaining sections are illustrative template content, not verified Veloce

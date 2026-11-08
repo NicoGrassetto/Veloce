@@ -45,7 +45,9 @@ selecting the source file in the Actions tab.
 
 ## License
 
-Veloce is available under the [MIT License](LICENSE).
+Veloce is available under the [MIT License](LICENSE), with the exception of the
+Caveman-derived response-style guidance. Its attribution and license notices are
+in [third_party/caveman](third_party/caveman/NOTICE).
 
 <p align="center">
   <em>In memory of the software craftsmen who laid the foundations for today's technology and agentic revolution.</em>
