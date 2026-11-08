@@ -1,6 +1,8 @@
 # Project Progress
 
 ## Session Update (2026-11-08)
+- Added executable POSIX shell script `init` to create an empty
+  `.github/AGENT.md` relative to the script, preserving existing contents.
 - Added `scripts/create-agents.js` to generate the requested
   `.github/AGENTS.md` template without overwriting existing instructions.
 - Documented generator usage in README's `/init` section and added tests for

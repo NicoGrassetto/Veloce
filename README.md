@@ -45,6 +45,9 @@ selecting the source file in the Actions tab.
 
 ### /init
 
+Run `./init` to create an empty `.github/AGENT.md` at the project root.
+It creates `.github/` if needed and preserves existing file contents.
+
 To initialize a project's `.github/AGENTS.md` template, run with Node.js:
 
 ```sh
