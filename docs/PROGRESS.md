@@ -1,6 +1,9 @@
 # Project Progress
 
 ## Session Update (2026-11-08)
+- Added `/init` under `skills/init`, exposed through `.agents/skills/init`, to
+  create or reconcile the four project documentation files. Documented its use
+  in the README.
 - Added the standalone Caveman skill under `skills/caveman` and exposed it for
   project skill discovery through `.agents/skills/caveman`.
 - `make check` is unavailable because this repository has no Makefile or
