@@ -1,6 +1,10 @@
 # Project Progress
 
 ## Session Update (2026-11-08)
+- Added `scripts/check-agents-lines.js` to check root `AGENTS.md` against a
+  200-line maximum, printing a message before returning a boolean.
+- Shared file reading and line counting between both checkers, and added
+  AGENTS.md boundary, diagnostic, and working-directory tests.
 - Added `scripts/check-markdown-lines.js` to check Markdown files in `docs/`
   against a 150-line maximum, with boolean results and failure diagnostics.
 - Documented CLI/import usage and added Node.js tests for line-count boundaries,

@@ -60,6 +60,23 @@ JavaScript callers can import `checkMarkdownLineLimit` from the script; it
 returns a boolean and prints a diagnostic on failure. Run its tests with
 `node --test scripts/check-markdown-lines.test.js`.
 
+### AGENTS.md line limit
+
+Check the repository's root `AGENTS.md` against a 200-line maximum:
+
+```sh
+node scripts/check-agents-lines.js
+```
+
+The script prints a success message or failure reason before printing the
+boolean result. It exits with status 0 for `true` and 1 for `false`, including
+read errors. It locates `AGENTS.md` relative to the script, regardless of the
+current directory, and uses the same line-counting rules as the Markdown check.
+
+JavaScript callers can import `checkAgentsLineLimit` from the script; it prints
+a message before returning a boolean. Run both checkers' tests with
+`node --test scripts/check-markdown-lines.test.js scripts/check-agents-lines.test.js`.
+
 ## License
 
 Veloce is available under the [MIT License](LICENSE).

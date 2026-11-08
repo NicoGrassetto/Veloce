@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const { readFileSync } = require("node:fs");
 const path = require("node:path");
+const { checkFileLineLimit } = require("./check-file-lines");
 
 const docsDirectory = path.resolve(__dirname, "../docs");
 const maximumLines = 150;
@@ -24,21 +24,7 @@ function checkMarkdownLineLimit(filePath) {
     return false;
   }
 
-  let content;
-  try {
-    content = readFileSync(absolutePath, "utf8");
-  } catch (error) {
-    console.error(`Cannot read ${filePath}: ${error.message}`);
-    return false;
-  }
-
-  const lines = content === "" ? 0 : content.split(/\r\n|\n|\r/).length - (/\r?\n$|\r$/.test(content) ? 1 : 0);
-  if (lines > maximumLines) {
-    console.error(`${filePath} has ${lines} lines; the maximum is ${maximumLines} (${lines - maximumLines} too many).`);
-    return false;
-  }
-
-  return true;
+  return checkFileLineLimit(filePath, maximumLines);
 }
 
 if (require.main === module) {
