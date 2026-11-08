@@ -8,7 +8,26 @@
 - Recorded the upstream source and license notices for the adapted guidance.
 - Confirmed the instruction files match, Copilot CLI discovers the shared
   instructions, and a fresh session preserves key facts in a concise reply.
-- `make check` is unavailable because this repository has no Makefile.
+- Merged the latest main changes; the Node.js tests and instruction/progress
+  line-limit checks pass.
+
+## Session Update (2026-11-08)
+- Added `scripts/create-agents.js` to generate the requested
+  `.github/AGENTS.md` template without overwriting existing instructions.
+- Documented generator usage in README's `/init` section and added tests for
+  exact content, target directories, existing files, and failure reporting.
+- Added `scripts/check-agents-lines.js` to check root `AGENTS.md` against a
+  200-line maximum, printing a message before returning a boolean.
+- Shared file reading and line counting between both checkers, and added
+  AGENTS.md boundary, diagnostic, and working-directory tests.
+- Added `scripts/check-markdown-lines.js` to check Markdown files in `docs/`
+  against a 150-line maximum, with boolean results and failure diagnostics.
+- Documented CLI/import usage and added Node.js tests for line-count boundaries,
+  newline formats, invalid paths, and exit statuses.
+- Added the standalone Caveman skill under `skills/caveman` and exposed it for
+  project skill discovery through `.agents/skills/caveman`.
+- `make check` is unavailable because this repository has no Makefile or
+  `check` target.
 
 The remaining sections are illustrative template content, not verified Veloce
 project status.
