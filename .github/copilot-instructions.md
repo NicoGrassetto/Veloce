@@ -1,151 +1,123 @@
-Completion criteria:
-- To be implemented as a template
-  Project tech stack, architectural convention, verification commadns  etc
-  Application logic, infrastructure, tooling, documentation
-break large goals into small building blocks — design, code, review, test — let the agent assemble them one by one, then use those blocks to compose more complex tasks.
+# Veloce agent instructions
 
-Verification commands:
+## Project context
 
-For now just an example -> 
-- Tests: pytest tests/ -x
-- Type check: mypy src/ --strict
-- Lint: ruff check src/
-- Full verification: make check (includes all above)
+Veloce is a tool- and model-agnostic software engineering harness. Adapt its
+instructions to each project's actual stack, architecture, tools, and
+constraints. Template placeholders and examples are not verified facts about
+Veloce or a project.
 
+When adapting the harness, document the project overview
+(`{{project_overview}}`), hard constraints (`{{hard_constraints_list}}`),
+architecture, dependencies, and commands for setup, development, testing,
+linting, and full verification. Check that commands and paths exist before
+relying on them.
 
-project/
-├── AGENTS.md              # Entry: project overview, run commands, hard constraints
-├── src/
-│   ├── api/
-│   │   ├── ARCHITECTURE.md  # API layer architecture decisions
-│   │   └── ...
-│   ├── db/
-│   │   ├── CONSTRAINTS.md   # Database operation hard constraints
-│   │   └── ...
-│   └── ...
-├── PROGRESS.md             # Current progress: done, in-progress, blocked
-└── Makefile                # Standardized commands: setup, test, lint, check
+When adding an instruction, record why it was added, when it applies, and when
+it can be removed.
 
-Managing Agent State with ACID Principles
-This analogy comes from database transaction management. You might feel like this is overcomplicating things, but it actually provides a very practical framework:
+## Shared agent instructions
 
-Atomicity: A "logical operation" (say, adding an endpoint and updating its tests) is committed as a whole only once it's complete and verified. A failed or abandoned attempt gets discarded, not partially merged. All or nothing.
-Consistency: Define "consistent state" verification predicates — all tests pass, lint reports zero errors. The agent runs verification after each operation; inconsistent intermediate states should not be committed. After an operation, the system should be in a verifiably correct state.
-Isolation: When multiple agents work concurrently, design state files to avoid race conditions. Simple approach: each agent uses its own progress file, or use git branches for isolation. Concurrent writes to the same file are a common source of trouble.
-Durability: Critical project knowledge lives in git-tracked files. Temporary state can stay in session memory, but knowledge that must survive across sessions has to be written to files. What's in your head doesn't count — only what's written down counts.
+`AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` contain the same
+project-wide instructions. Before synchronizing, inspect all three files and
+reconcile independent changes rather than overwriting them.
 
-# AGENTS.md
+In this repository, select a reconciled source and run, for example:
 
-## Project Overview
-Python 3.11 FastAPI backend, PostgreSQL 15 database.
+```sh
+python3 scripts/sync-agent-instructions.py --source AGENTS.md
+```
 
-## Quick Start
-- Install: `make setup`
-- Test: `make test`
-- Full verification: `make check`
+The GitHub Actions workflow also synchronizes these files and stops when
+multiple changed sources conflict.
 
-## Hard Constraints
-- All APIs must use OAuth 2.0 authentication
-- All database queries must use SQLAlchemy 2.0 syntax
-- All PRs must pass pytest + mypy --strict + ruff check
+## Session workflow
 
-## Topic Docs
-- API Design Patterns (`docs/api-patterns.md`) — Required reading when adding endpoints
-- Database Rules (`docs/database-rules.md`) — Required when modifying database operations
-- Testing Standards (`docs/testing-standards.md`) — Reference when writing tests
+At the start of a session:
 
-Every instruction should document its source ("why was this rule added?"), applicability condition ("when is this rule needed?"), and expiry condition ("under what circumstances can this rule be removed?").
+1. Read `docs/PROGRESS.md` and `docs/DECISIONS.md` when they exist. If the
+   project keeps these files at its root instead, read those. Treat example or
+   placeholder entries as examples, not current project state.
+2. Run `make check` when the target exists. Otherwise use the project's
+   available verification commands and report what could not be checked.
+3. Continue the requested work. Use the progress file's next steps when they
+   are relevant and describe actual project work.
 
-## At session start (clock in)
-1. Read PROGRESS.md for current state
-2. Read DECISIONS.md for important decisions
-3. Run make check to confirm repo is in consistent state
-4. Continue from PROGRESS.md "Next Steps" section
+Before ending a session:
 
-## Before session end (clock out)
-1. Update PROGRESS.md
-2. Run make check to confirm consistent state
-3. Commit all completed work
+1. Update the project's progress record with completed work, remaining work,
+   blockers, and verification results.
+2. Run `make check` when available, or the applicable documented checks.
+   Report any missing or failing verification.
+3. Commit completed, verified work as a complete logical operation.
 
-# Startup Readiness Checklist
+## Engineering workflow
 
-## Start Commands
-- Install dependencies: `make setup`
-- Start dev server: `make dev`
-- Run tests: `make test`
-- Full verification: `make check`
+- Break large goals into small design, implementation, review, and verification
+  blocks. Build more complex work from verified blocks.
+- Work on one feature at a time. Finish its end-to-end verification before
+  starting another; do not make unrelated refactors.
+- Record durable project knowledge in tracked files. Use separate branches or
+  progress files for concurrent work to avoid conflicting writes.
+- Keep the feature list in `docs/features.md` when the project uses one.
+  Only one feature may be active at a time. Its verification command must
+  pass before it is marked passing.
+- Feature state is updated by the verification script, not by an agent. If the
+  script is unavailable, report the limitation rather than marking a feature
+  passing manually.
+- Consult project topic documents when applicable, including API design,
+  database rules, and testing standards, if those documents exist.
 
-## Current State
-- All dependencies installed and locked
-- Test framework configured (Vitest + React Testing Library)
-- Example test passing (1/1)
-- Lint rules configured (ESLint + Prettier)
+## Definition of done
 
-## Project Structure
-- src/ — Source code
-- src/components/ — React components
-- src/api/ — API client
-- tests/ — Test files
+Code being written is not sufficient. A feature is complete only after its
+required verification passes:
 
-# Task Breakdown
+1. Syntax and static analysis.
+2. Unit tests, then integration tests.
+3. End-to-end or system-level verification of the user scenario and relevant
+   runtime behavior.
 
-## Task 1: User Authentication Basics
-- Implement JWT auth middleware
-- Add login/register endpoints
-- Acceptance: pytest tests/test_auth.py all passing
+Do not advance from a failed level to the next. Check relevant side effects,
+startup readiness, and temporary-resource cleanup. Report missing checks or
+failures rather than claiming completion.
 
-## Task 2: User Profile Page
-- Implement user profile CRUD
-- Add profile edit form
-- Acceptance: pytest tests/test_profile.py all passing
+For project initialization, document how to run and test the project, ensure
+setup works from scratch, configure at least one passing test, and provide a
+task breakdown with at least three tasks. Commit completed, verified work.
 
-## Task 3: Search Feature
-- ...
+## Agent state and consistency
 
+- **Atomicity:** Complete and verify a logical operation as a whole; do not
+  commit a partial or abandoned operation.
+- **Consistency:** Define verification predicates and run the applicable checks
+  after each operation. Do not commit an inconsistent intermediate state.
+- **Isolation:** Isolate concurrent agents with separate branches or progress
+  records.
+- **Durability:** Keep important project knowledge in tracked files rather than
+  relying on conversation memory.
 
-## Initialization Acceptance Checklist
-- [ ] `make setup` succeeds from scratch
-- [ ] `make test` has at least one passing test
-- [ ] A new agent session can answer "how to run" and "how to test" from repo contents alone
-- [ ] Task breakdown file exists with at least 3 tasks
-- [ ] Everything committed to git
+## Template examples
 
-how to enforce WIP
-## Work Rules
-- Work on one feature at a time
-- Only start the next feature after the current one passes end-to-end verification
-- Don't "also refactor" feature B while implementing feature A
+These are illustrations to adapt, not Veloce requirements or evidence that a
+tool, file, feature, or test exists:
 
-F01: User Registration
-  Verification: curl -X POST /api/register -d '{"email":"test@example.com","password":"123456"}' | jq .status == 201
-  State: passing
+- Common project commands are `make setup`, `make dev`, `make test`, and
+  `make check`.
+- A Python project might use Python 3.11, FastAPI, PostgreSQL 15, OAuth 2.0,
+  SQLAlchemy 2.0, pytest, mypy, and Ruff. Its checks might be:
 
-## Feature List Rules
-- Feature list file: /docs/features.md
-- Only one feature active at a time
-- Verification command must pass before marking as passing
-- Don't modify feature list states yourself — the verification script updates them automatically
+  ```sh
+  pytest tests/ -x
+  mypy src/ --strict
+  ruff check src/
+  make check
+  ```
 
-## Definition of Done
-- Feature complete = end-to-end verification passed, not "code is written"
-- Required verification levels:
-  1. Unit tests pass
-  2. Integration tests pass
-  3. End-to-end flow verification passes
-- Do not proceed to level 2 if level 1 fails
-- Do not proceed to level 3 if level 2 fails
-
-2. Build a Three-Layer Termination Validation
-Layer 1: Syntax and Static Analysis. Lowest cost, least information, but must pass. This is the bare minimum—you need to spell the words correctly before reading further.
-Layer 2: Runtime Behavior Verification. Test execution, application startup checks, critical path validation. This is the core evidence of completion—not just written, but runnable.
-Layer 3: System-Level Confirmation. End-to-end testing, integration validation, user scenario simulation. The last line of defense against premature declarations—not just runnable, but correct.
-
-
-<!-- 4. Capture Runtime Signals -->
-<!-- Effective runtime signals include: -->
-
-<!-- Did the application successfully start and reach a ready state? -->
-<!-- Did critical feature paths execute successfully at runtime? -->
-<!-- Were database writes, file operations, and other side effects correct? -->
-<!-- Were temporary resources cleaned up? -->
-
+- A React project might use Vitest, React Testing Library, ESLint, and
+  Prettier. Authentication, user profiles, and search are example tasks, not
+  requirements for every project.
+- A project may document API architecture in `src/api/ARCHITECTURE.md`,
+  database constraints in `src/db/CONSTRAINTS.md`, and topic guidance in
+  `docs/api-patterns.md`, `docs/database-rules.md`, and
+  `docs/testing-standards.md`.

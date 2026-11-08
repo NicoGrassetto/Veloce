@@ -1,5 +1,13 @@
 # Project Progress
 
+## Veloce harness update
+- Reconciled the shared agent instructions across `AGENTS.md`, `CLAUDE.md`,
+  and `.github/copilot-instructions.md`.
+- `make check` is unavailable because this repository has no Makefile.
+
+The remaining sections are illustrative template content, not verified Veloce
+project status.
+
 ## Current State
 - Latest commit: {{latest_commit}} (feat: {{feat}})
 - Test status: 42/43 passing (test_pagination_edge_case failing)

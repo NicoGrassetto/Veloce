@@ -1,77 +1,123 @@
-# AGENTS.md
+# Veloce agent instructions
 
-## Project Overview
-{{project_overview}}
+## Project context
 
-## Quick Start
-- Install: `make setup`
-- Test: `make test`
-- Full verification: `make check`
+Veloce is a tool- and model-agnostic software engineering harness. Adapt its
+instructions to each project's actual stack, architecture, tools, and
+constraints. Template placeholders and examples are not verified facts about
+Veloce or a project.
 
-## Hard Constraints
-<example>All APIs must use OAuth 2.0 authentication</example>
-{{hard_constraints_list}}
+When adapting the harness, document the project overview
+(`{{project_overview}}`), hard constraints (`{{hard_constraints_list}}`),
+architecture, dependencies, and commands for setup, development, testing,
+linting, and full verification. Check that commands and paths exist before
+relying on them.
 
-## At session start (clock in)
-1. Read PROGRESS.md for current state
-2. Read DECISIONS.md for important decisions
-3. Run make check to confirm repo is in consistent state
-4. Continue from PROGRESS.md "Next Steps" section
+When adding an instruction, record why it was added, when it applies, and when
+it can be removed.
 
-## Before session end (clock out)
-1. Update PROGRESS.md
-2. Run make check to confirm consistent state
-3. Commit all completed workzll database queries must use SQLAlchemy 2.0 syntax
-- All PRs must pass pytest + mypy --strict + ruff check
+## Shared agent instructions
 
-## Topic Docs
-- API Design Patterns (`docs/api-patterns.md`) — Required reading when adding endpoints
-- Database Rules (`docs/database-rules.md`) — Required when modifying database operations
-- Testing Standards (`docs/testing-standards.md`) — Reference when writing tests
+`AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` contain the same
+project-wide instructions. Before synchronizing, inspect all three files and
+reconcile independent changes rather than overwriting them.
 
-## At session start (clock in)
-1. Read ./docs/PROGRESS.md for current state
-2. Read ./docs/DECISIONS.md for important decisions
-3. Run make check to confirm repo is in consistent state
-4. Continue from ./docs/PROGRESS.md "Next Steps" section
+In this repository, select a reconciled source and run, for example:
 
-## Before session end (clock out)
-1. Update ./docs/PROGRESS.md
-2. Run make check to confirm consistent state
-3. Commit all completed work
+```sh
+python3 scripts/sync-agent-instructions.py --source AGENTS.md
+```
 
-Completion criteria:
-- To be implemented as a template
-  Project tech stack, architectural convention, verification commadns  etc
-  Application logic, infrastructure, tooling, documentation
-break large goals into small building blocks — design, code, review, test — let the agent assemble them one by one, then use those blocks to compose more complex tasks.
+The GitHub Actions workflow also synchronizes these files and stops when
+multiple changed sources conflict.
 
-Verification commands:
+## Session workflow
 
-For now just an example -> 
-- Tests: pytest tests/ -x
-- Type check: mypy src/ --strict
-- Lint: ruff check src/
-- Full verification: make check (includes all above)
+At the start of a session:
 
+1. Read `docs/PROGRESS.md` and `docs/DECISIONS.md` when they exist. If the
+   project keeps these files at its root instead, read those. Treat example or
+   placeholder entries as examples, not current project state.
+2. Run `make check` when the target exists. Otherwise use the project's
+   available verification commands and report what could not be checked.
+3. Continue the requested work. Use the progress file's next steps when they
+   are relevant and describe actual project work.
 
-project/
-├── AGENTS.md              # Entry: project overview, run commands, hard constraints
-├── src/
-│   ├── api/
-│   │   ├── ARCHITECTURE.md  # API layer architecture decisions
-│   │   └── ...
-│   ├── db/
-│   │   ├── CONSTRAINTS.md   # Database operation hard constraints
-│   │   └── ...
-│   └── ...
-├── PROGRESS.md             # Current progress: done, in-progress, blocked
-└── Makefile                # Standardized commands: setup, test, lint, check
+Before ending a session:
 
-Managing Agent State with ACID Principles
-This analogy comes from database transaction management. You might feel like this is overcomplicating things, but it actually provides a very practical framework:
+1. Update the project's progress record with completed work, remaining work,
+   blockers, and verification results.
+2. Run `make check` when available, or the applicable documented checks.
+   Report any missing or failing verification.
+3. Commit completed, verified work as a complete logical operation.
 
-Atomicity: A "logical operation" (say, adding an endpoint and updating its tests) is committed as a whole only once it's complete and verified. A failed or abandoned attempt gets discarded, not partially merged. All or nothing.
-Consistency: Define "consistent state" verification predicates — all tests pass, lint reports zero errors. The agent runs verification after each operation; inconsistent intermediate states should not be committed. After an operation, the system should be in a verifiably correct state.
-Isolation: When multiple agents work concurrently, design state files to avoid race conditions. Simple approach: each agent uses its own progress file, or use git branches for isolation. Concurrent writes to the same file are a common source of trouble.
-Durability: Critical project knowledge lives in git-tracked files. Temporary state can stay in session memory, but knowledge that must survive across sessions has to be written to files. What's in your head doesn't count — only what's written down counts.
+## Engineering workflow
+
+- Break large goals into small design, implementation, review, and verification
+  blocks. Build more complex work from verified blocks.
+- Work on one feature at a time. Finish its end-to-end verification before
+  starting another; do not make unrelated refactors.
+- Record durable project knowledge in tracked files. Use separate branches or
+  progress files for concurrent work to avoid conflicting writes.
+- Keep the feature list in `docs/features.md` when the project uses one.
+  Only one feature may be active at a time. Its verification command must
+  pass before it is marked passing.
+- Feature state is updated by the verification script, not by an agent. If the
+  script is unavailable, report the limitation rather than marking a feature
+  passing manually.
+- Consult project topic documents when applicable, including API design,
+  database rules, and testing standards, if those documents exist.
+
+## Definition of done
+
+Code being written is not sufficient. A feature is complete only after its
+required verification passes:
+
+1. Syntax and static analysis.
+2. Unit tests, then integration tests.
+3. End-to-end or system-level verification of the user scenario and relevant
+   runtime behavior.
+
+Do not advance from a failed level to the next. Check relevant side effects,
+startup readiness, and temporary-resource cleanup. Report missing checks or
+failures rather than claiming completion.
+
+For project initialization, document how to run and test the project, ensure
+setup works from scratch, configure at least one passing test, and provide a
+task breakdown with at least three tasks. Commit completed, verified work.
+
+## Agent state and consistency
+
+- **Atomicity:** Complete and verify a logical operation as a whole; do not
+  commit a partial or abandoned operation.
+- **Consistency:** Define verification predicates and run the applicable checks
+  after each operation. Do not commit an inconsistent intermediate state.
+- **Isolation:** Isolate concurrent agents with separate branches or progress
+  records.
+- **Durability:** Keep important project knowledge in tracked files rather than
+  relying on conversation memory.
+
+## Template examples
+
+These are illustrations to adapt, not Veloce requirements or evidence that a
+tool, file, feature, or test exists:
+
+- Common project commands are `make setup`, `make dev`, `make test`, and
+  `make check`.
+- A Python project might use Python 3.11, FastAPI, PostgreSQL 15, OAuth 2.0,
+  SQLAlchemy 2.0, pytest, mypy, and Ruff. Its checks might be:
+
+  ```sh
+  pytest tests/ -x
+  mypy src/ --strict
+  ruff check src/
+  make check
+  ```
+
+- A React project might use Vitest, React Testing Library, ESLint, and
+  Prettier. Authentication, user profiles, and search are example tasks, not
+  requirements for every project.
+- A project may document API architecture in `src/api/ARCHITECTURE.md`,
+  database constraints in `src/db/CONSTRAINTS.md`, and topic guidance in
+  `docs/api-patterns.md`, `docs/database-rules.md`, and
+  `docs/testing-standards.md`.
