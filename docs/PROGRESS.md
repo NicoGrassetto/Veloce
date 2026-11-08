@@ -1,5 +1,11 @@
 # Project Progress
 
+## Session Update (2026-11-08)
+- Added the standalone Caveman skill under `skills/caveman` and exposed it for
+  project skill discovery through `.agents/skills/caveman`.
+- `make check` is unavailable because this repository has no Makefile or
+  `check` target.
+
 ## Current State
 - Latest commit: {{latest_commit}} (feat: {{feat}})
 - Test status: 42/43 passing (test_pagination_edge_case failing)
