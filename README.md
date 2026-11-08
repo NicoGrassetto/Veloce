@@ -43,6 +43,32 @@ files. If multiple instruction files change with different content, the
 workflow stops to avoid discarding edits. It can also be run manually by
 selecting the source file in the Actions tab.
 
+### /init
+
+To initialize a project's `.github/AGENTS.md` template, run with Node.js:
+
+```sh
+node scripts/create-agents.js
+```
+
+By default, the script creates `.github/AGENTS.md` in the current directory.
+To initialize another project from this checkout:
+
+```sh
+node scripts/create-agents.js /path/to/project
+```
+
+The script creates `.github/` if needed and refuses to overwrite an existing
+`AGENTS.md`, reporting the error with exit status 1. The template contains the
+Python 3.11/FastAPI/PostgreSQL 15 overview, Make commands, hard constraints, and
+topic documentation links. Adapt these examples to the target project's stack;
+the script does not create a Makefile or the linked documentation.
+It leaves the synchronized root agent instructions unchanged.
+
+This section documents initialization; it does not register a slash command
+with an agent tool. Run the generator's tests with
+`node --test scripts/create-agents.test.js`.
+
 ### Markdown line limit
 
 Check a Markdown file inside this repository's `docs/` directory with Node.js:

@@ -1,6 +1,10 @@
 # Project Progress
 
 ## Session Update (2026-11-08)
+- Added `scripts/create-agents.js` to generate the requested
+  `.github/AGENTS.md` template without overwriting existing instructions.
+- Documented generator usage in README's `/init` section and added tests for
+  exact content, target directories, existing files, and failure reporting.
 - Added `scripts/check-agents-lines.js` to check root `AGENTS.md` against a
   200-line maximum, printing a message before returning a boolean.
 - Shared file reading and line counting between both checkers, and added
