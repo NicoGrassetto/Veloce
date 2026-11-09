@@ -1,5 +1,9 @@
 # Project Progress
 
+## Session Update (2026-11-09)
+- Extended `init` to create root `PROGRESS.md` with the requested placeholder
+  template, preserving existing progress on subsequent runs.
+
 ## Session Update (2026-11-08)
 - Added executable POSIX shell script `init` to create an empty
   `.github/AGENT.md` relative to the script, preserving existing contents.
