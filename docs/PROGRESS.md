@@ -1,5 +1,19 @@
 # Project Progress
 
+## Repository cleanup (2026-11-09)
+- Removed root `CLAUDE.md`, the `scripts/` directory, and the dependent
+  instruction-sync workflow.
+- Removed `third_party/caveman/`, preserving required attribution and license
+  notices under `skills/caveman/` for the retained response-style guidance.
+- Updated current documentation and shared instructions; the two remaining
+  instruction files are maintained manually. Earlier entries below are history.
+- Verification before removal: all 15 Node.js tests, instruction/progress line
+  limits, shell syntax, and shared instruction consistency passed.
+- Verification after removal: shell syntax, shared instruction consistency,
+  removed-path checks, documentation references, and diff whitespace passed.
+- `make check` is unavailable; the removed scripts' tests and line-limit
+  commands are no longer available. No cleanup work remains.
+
 ## Veloce harness update
 - Reconciled the shared agent instructions across `AGENTS.md`, `CLAUDE.md`,
   and `.github/copilot-instructions.md`.
