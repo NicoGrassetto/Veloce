@@ -30,6 +30,22 @@ Veloce is intentionally tool- and model-agnostic. The goal is not to prescribe a
 
 ## How it works
 
+### Project initialization
+
+Invoke `/init` to initialize project documentation using the
+[init skill](skills/init/SKILL.md). It creates or updates
+`docs/DECISIONS.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md` and
+`docs/FEATURES.md` with the project's decisions, architecture, current state and
+verifiable feature list. Existing documentation and history are preserved;
+unknowns and unavailable verification commands are recorded explicitly.
+It also creates a root `AGENTS.md` with project-specific agent instructions
+when that file does not already exist, leaving existing instructions unchanged.
+
+The skill lives in `skills/init` and is exposed for project skill discovery
+through `.agents/skills/init`.
+
+### Agent instructions
+
 Agent instructions are kept identical across the formats used by the supported
 tools:
 
@@ -43,7 +59,7 @@ files. If multiple instruction files change with different content, the
 workflow stops to avoid discarding edits. It can also be run manually by
 selecting the source file in the Actions tab.
 
-### /init
+### Initialization scripts
 
 Run `./init` to create an empty `.github/AGENT.md` at the project root.
 It also creates root `PROGRESS.md` and `DECISIONS.md` with their respective templates.
@@ -69,8 +85,8 @@ topic documentation links. Adapt these examples to the target project's stack;
 the script does not create a Makefile or the linked documentation.
 It leaves the synchronized root agent instructions unchanged.
 
-This section documents initialization; it does not register a slash command
-with an agent tool. Run the generator's tests with
+These scripts do not register a slash command with an agent tool; the `/init`
+skill is documented above. Run the generator's tests with
 `node --test scripts/create-agents.test.js`.
 
 ### Markdown line limit

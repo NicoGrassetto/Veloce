@@ -12,6 +12,15 @@
   line-limit checks pass.
 
 ## Session Update (2026-11-09)
+- Integrated the pending init-script and init-skill branches, preserving both
+  implementations and their documentation.
+- Verification: all 15 Node.js tests, POSIX shell syntax, root AGENTS.md and
+  docs Markdown line limits, and shared instruction consistency passed.
+- Verified shell initialization from another working directory and confirmed
+  repeated runs preserve existing agent, progress, and decision content.
+- Verified the init skill discovery link and its tracked Markdown content.
+- No implementation work remains for these merges. `make check` is unavailable;
+  interactive agent execution of the documentation skill was not checked.
 - Extended `init` to create root `DECISIONS.md` with the requested design
   decision template, preserving existing decisions on subsequent runs.
 - Extended `init` to create root `PROGRESS.md` with the requested placeholder
@@ -32,6 +41,11 @@
   against a 150-line maximum, with boolean results and failure diagnostics.
 - Documented CLI/import usage and added Node.js tests for line-count boundaries,
   newline formats, invalid paths, and exit statuses.
+- Extended `/init` to create root `AGENTS.md` only when missing, with
+  project-specific instructions and links to the four documentation files.
+- Added `/init` under `skills/init`, exposed through `.agents/skills/init`, to
+  create or reconcile the four project documentation files. Documented its use
+  in the README.
 - Added the standalone Caveman skill under `skills/caveman` and exposed it for
   project skill discovery through `.agents/skills/caveman`.
 - `make check` is unavailable because this repository has no Makefile or
