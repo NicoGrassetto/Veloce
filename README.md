@@ -32,7 +32,7 @@ Veloce is intentionally tool- and model-agnostic. The goal is not to prescribe a
 
 ### Project initialization
 
-Use the [init skill instructions](skills/init/SKILL.md) to initialize project
+Use the [init skill instructions](.github/skills/init/SKILL.md) to initialize project
 documentation. They create or update
 `docs/DECISIONS.md`, `docs/ARCHITECTURE.md`, root `PROGRESS.md` and
 `docs/FEATURES.md` with the project's decisions, architecture, current state and
@@ -41,8 +41,8 @@ unknowns and unavailable verification commands are recorded explicitly.
 It also creates a root `AGENTS.md` with project-specific agent instructions
 when that file does not already exist, leaving existing instructions unchanged.
 
-The skill lives in `skills/init`. Automatic project skill discovery is not
-configured; `/init` availability depends on the agent tool's configuration.
+The skill lives in `.github/skills/init`. Project skill discovery and `/init`
+availability depend on the agent tool's support and configuration.
 
 ### Agent instructions
 
@@ -68,7 +68,7 @@ skill is documented above.
 
 Veloce is available under the [MIT License](LICENSE), with the exception of the
 Caveman-derived response-style guidance. Its attribution and license notices are
-in [skills/caveman/NOTICE](skills/caveman/NOTICE).
+in [.github/skills/caveman/NOTICE](.github/skills/caveman/NOTICE).
 
 <p align="center">
   <em>In memory of the software craftsmen who laid the foundations for today's technology and agentic revolution.</em>

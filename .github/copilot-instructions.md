@@ -41,7 +41,7 @@ accuracy; clarity wins over brevity.
   rest of the session unless they request the concise style again.
 
 This style is modified from [Caveman v4.1.0](https://github.com/JuliusBrussee/caveman/tree/v4.1.0),
-Copyright 2026 Julius Brussee; see `skills/caveman/NOTICE` for source and license
+Copyright 2026 Julius Brussee; see `.github/skills/caveman/NOTICE` for source and license
 notices. It applies to conversational replies; remove it if the project no
 longer wants concise-by-default agent responses.
 

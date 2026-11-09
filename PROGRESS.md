@@ -24,12 +24,12 @@
 
 ### Session 002
 
-- Date:
-- Goal:
-- Completed:
-- Verification run:
-- Evidence captured:
+- Date: 2026-11-09
+- Goal: Move source skills under `.github/`.
+- Completed: Moved `skills/` to `.github/skills/` and updated current references.
+- Verification run: File-preservation checks, path checks, and `git diff --check`.
+- Evidence captured: All 12 tracked skill files remain under the new directory.
 - Commits:
-- Files or artifacts updated:
-- Known risk or unresolved issue:
-- Next best step:
+- Files or artifacts updated: .github/skills/, README.md, .github/copilot-instructions.md, PROGRESS.md.
+- Known risk or unresolved issue: Skill discovery depends on the agent tool.
+- Next best step: No remaining work for this move.
