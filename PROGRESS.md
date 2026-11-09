@@ -22,6 +22,18 @@
 - Known risk or unresolved issue: Skills no longer have automatic project discovery.
 - Next best step: No remaining work for this removal.
 
+### Session 005
+
+- Date: 2026-11-09
+- Goal: Add `docs/REQUIREMENTS.md`.
+- Completed: Added the file without requirement entries.
+- Verification run: File existence and `git diff --check`.
+- Evidence captured: `docs/REQUIREMENTS.md` exists.
+- Commits:
+- Files or artifacts updated: docs/REQUIREMENTS.md, PROGRESS.md.
+- Known risk or unresolved issue: None for file creation.
+- Next best step: No remaining work for this addition.
+
 ### Session 002
 
 - Date: 2026-11-09
