@@ -1,0 +1,41 @@
+#!/bin/sh
+cd "$(dirname "$0")" &&
+mkdir -p .github &&
+touch .github/AGENT.md &&
+if [ ! -e PROGRESS.md ]; then
+cat > PROGRESS.md <<'EOF'
+# Project Progress
+
+## Current State
+- Latest commit: <...> (feat: <...>)
+- Test status: <...>/<...> passing (<...> failing)
+- Lint: <passing or failing>
+
+## Completed
+- [x] <...>
+- [x] <...>
+- [x] <...>
+
+## In Progress
+- [ ] <...>
+
+## Known Issues
+- <...>
+- <...>
+
+## Next Steps
+1. <...>
+2. <...>
+3. <...>
+EOF
+fi &&
+if [ ! -e DECISIONS.md ]; then
+cat > DECISIONS.md <<'EOF'
+# Design Decisions
+
+## <date>: <design decision>
+- Reason: <the reason explained>
+- Rejected alternative: <if any, explain>
+- Constraint: <explain the constrain>
+EOF
+fi

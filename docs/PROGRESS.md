@@ -11,7 +11,15 @@
 - Merged the latest main changes; the Node.js tests and instruction/progress
   line-limit checks pass.
 
+## Session Update (2026-11-09)
+- Extended `init` to create root `DECISIONS.md` with the requested design
+  decision template, preserving existing decisions on subsequent runs.
+- Extended `init` to create root `PROGRESS.md` with the requested placeholder
+  template, preserving existing progress on subsequent runs.
+
 ## Session Update (2026-11-08)
+- Added executable POSIX shell script `init` to create an empty
+  `.github/AGENT.md` relative to the script, preserving existing contents.
 - Added `scripts/create-agents.js` to generate the requested
   `.github/AGENTS.md` template without overwriting existing instructions.
 - Documented generator usage in README's `/init` section and added tests for
