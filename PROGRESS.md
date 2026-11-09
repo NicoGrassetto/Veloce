@@ -1,5 +1,12 @@
 # PROGRESS.md
 
+## Scope skill placeholder (2026-11-09)
+
+- Added empty `.github/skills/scope/SKILL.md`.
+- Verification: file existence and `git diff --check`.
+- The placeholder has no metadata or instructions; it is not a usable skill yet.
+- No remaining work for this placeholder addition.
+
 ## Current Verified State
 
 - Repository root:
