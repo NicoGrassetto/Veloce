@@ -26,44 +26,6 @@ The project brings together clear instructions, repeatable workflows, and practi
 
 Veloce is intentionally tool- and model-agnostic. The goal is not to prescribe a single way to write software, but to provide a dependable foundation that teams can adapt to their own stack and standards.
 
-## Architecture
-
-## How it works
-
-### Project initialization
-
-Use the [init skill instructions](.github/skills/init/SKILL.md) to initialize project
-documentation. They create or update
-`docs/DECISIONS.md`, `docs/ARCHITECTURE.md`, root `PROGRESS.md` and
-`docs/FEATURES.md` with the project's decisions, architecture, current state and
-verifiable feature list. Existing documentation and history are preserved;
-unknowns and unavailable verification commands are recorded explicitly.
-It also creates a root `AGENTS.md` with project-specific agent instructions
-when that file does not already exist, leaving existing instructions unchanged.
-
-The skill lives in `.github/skills/init`. Project skill discovery and `/init`
-availability depend on the agent tool's support and configuration.
-
-### Agent instructions
-
-Agent instructions are kept identical across the formats used by the supported
-tools:
-
-- `AGENTS.md` for OpenCode and other AGENTS.md-compatible agents
-- `.github/copilot-instructions.md` for GitHub Copilot
-
-Keep both files aligned manually. Inspect both files and reconcile independent
-changes before updating shared instructions.
-
-### Initialization scripts
-
-Run `./init` to create an empty `.github/AGENT.md` at the project root.
-It also creates root `PROGRESS.md` and `DECISIONS.md` with their respective templates.
-It creates `.github/` if needed and preserves existing files' contents.
-
-This script does not register a slash command with an agent tool; the `/init`
-skill is documented above.
-
 ## License
 
 Veloce is available under the [MIT License](LICENSE), with the exception of the
