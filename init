@@ -28,4 +28,14 @@ cat > PROGRESS.md <<'EOF'
 2. <...>
 3. <...>
 EOF
+fi &&
+if [ ! -e DECISIONS.md ]; then
+cat > DECISIONS.md <<'EOF'
+# Design Decisions
+
+## <date>: <design decision>
+- Reason: <the reason explained>
+- Rejected alternative: <if any, explain>
+- Constraint: <explain the constrain>
+EOF
 fi

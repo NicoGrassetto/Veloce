@@ -1,6 +1,8 @@
 # Project Progress
 
 ## Session Update (2026-11-09)
+- Extended `init` to create root `DECISIONS.md` with the requested design
+  decision template, preserving existing decisions on subsequent runs.
 - Extended `init` to create root `PROGRESS.md` with the requested placeholder
   template, preserving existing progress on subsequent runs.
 
