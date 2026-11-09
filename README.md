@@ -34,7 +34,7 @@ Veloce is intentionally tool- and model-agnostic. The goal is not to prescribe a
 
 Invoke `/init` to initialize project documentation using the
 [init skill](skills/init/SKILL.md). It creates or updates
-`docs/DECISIONS.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md` and
+`docs/DECISIONS.md`, `docs/ARCHITECTURE.md`, root `PROGRESS.md` and
 `docs/FEATURES.md` with the project's decisions, architecture, current state and
 verifiable feature list. Existing documentation and history are preserved;
 unknowns and unavailable verification commands are recorded explicitly.

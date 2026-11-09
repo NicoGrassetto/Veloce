@@ -1,5 +1,12 @@
 # Project Progress
 
+## Progress record location (2026-11-09)
+- Moved the progress record to root `PROGRESS.md`, preserving its history.
+- Updated shared instructions, README, and the init skill to use the root path.
+- Verification: destination/source checks, shared instruction consistency,
+  shell syntax, and diff whitespace passed. `make check` remains unavailable.
+- No remaining work or blockers for this move.
+
 ## Repository cleanup (2026-11-09)
 - Removed root `CLAUDE.md`, the `scripts/` directory, and the dependent
   instruction-sync workflow.

@@ -1,6 +1,6 @@
 ---
 name: init
-description: Initialize project documentation when the user invokes /init or asks to initialize a project. Creates AGENTS.md only when missing and creates or updates docs/DECISIONS.md, docs/ARCHITECTURE.md, docs/PROGRESS.md and docs/FEATURES.md using repository evidence and confirmed requirements.
+description: Initialize project documentation when the user invokes /init or asks to initialize a project. Creates AGENTS.md only when missing and creates or updates docs/DECISIONS.md, docs/ARCHITECTURE.md, root PROGRESS.md and docs/FEATURES.md using repository evidence and confirmed requirements.
 ---
 
 # Project initialization
@@ -11,7 +11,7 @@ repository root:
 - `AGENTS.md` (only if it does not already exist)
 - `docs/DECISIONS.md`
 - `docs/ARCHITECTURE.md`
-- `docs/PROGRESS.md`
+- `PROGRESS.md`
 - `docs/FEATURES.md`
 
 This skill initializes documentation, not application code, infrastructure or
@@ -65,13 +65,13 @@ instruction files and respect any repository synchronization policy.
 ## Topic Docs
 - [Architecture](docs/ARCHITECTURE.md)
 - [Decisions](docs/DECISIONS.md)
-- [Progress](docs/PROGRESS.md)
+- [Progress](PROGRESS.md)
 - [Features](docs/FEATURES.md)
 
 ## At Session Start
-1. Read docs/PROGRESS.md and docs/DECISIONS.md.
+1. Read PROGRESS.md and docs/DECISIONS.md.
 2. Run the documented baseline verification command when available.
-3. Continue from docs/PROGRESS.md "Next Steps".
+3. Continue from PROGRESS.md "Next Steps".
 
 ## Work Rules
 - Work on one feature at a time.
@@ -79,7 +79,7 @@ instruction files and respect any repository synchronization policy.
 - Keep changes scoped to the active feature.
 
 ## Before Session End
-1. Update docs/PROGRESS.md with completed work and blockers.
+1. Update PROGRESS.md with completed work and blockers.
 2. Run the documented verification commands and record the results.
 3. Follow the repository commit policy; preserve unrelated changes.
 ```
@@ -136,7 +136,7 @@ application logic, data storage, external integrations and deployment only
 where applicable. For commands, record their purpose, working directory,
 prerequisites and exact invocation. Explicitly note missing verification levels.
 
-### docs/PROGRESS.md
+### PROGRESS.md
 
 ```markdown
 # Project Progress

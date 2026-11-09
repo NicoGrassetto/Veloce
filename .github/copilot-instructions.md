@@ -59,8 +59,8 @@ change; replace it if automated synchronization is introduced.
 
 At the start of a session:
 
-1. Read `docs/PROGRESS.md` and `docs/DECISIONS.md` when they exist. If the
-   project keeps these files at its root instead, read those. Treat example or
+1. Read root `PROGRESS.md` and `docs/DECISIONS.md` when they exist. If the
+   project keeps these files elsewhere instead, read those. Treat example or
    placeholder entries as examples, not current project state.
 2. Run `make check` when the target exists. Otherwise use the project's
    available verification commands and report what could not be checked.
