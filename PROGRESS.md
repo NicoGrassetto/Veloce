@@ -45,3 +45,15 @@
 - Files or artifacts updated: FEATURES.md, PROGRESS.md.
 - Known risk or unresolved issue: None for file creation.
 - Next best step: No remaining work for this addition.
+
+### Session 004
+
+- Date: 2026-11-09
+- Goal: Remove root `init` and `feature_list.json`.
+- Completed: Removed both files and updated AGENTS.md to use FEATURES.md and documented startup commands.
+- Verification run: Removed-path checks, retained-file checks, and `git diff --check`.
+- Evidence captured: Both root files are absent; FEATURES.md and the init skill remain.
+- Commits:
+- Files or artifacts updated: init, feature_list.json, AGENTS.md, PROGRESS.md.
+- Known risk or unresolved issue: No executable startup or verification command is configured.
+- Next best step: No remaining work for this removal.
