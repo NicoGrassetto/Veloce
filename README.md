@@ -50,14 +50,10 @@ Agent instructions are kept identical across the formats used by the supported
 tools:
 
 - `AGENTS.md` for OpenCode and other AGENTS.md-compatible agents
-- `CLAUDE.md` for Claude Code
 - `.github/copilot-instructions.md` for GitHub Copilot
 
-The `Sync agent instructions` GitHub Actions workflow detects which instruction
-file changed, copies it to the other formats, and commits the synchronized
-files. If multiple instruction files change with different content, the
-workflow stops to avoid discarding edits. It can also be run manually by
-selecting the source file in the Actions tab.
+Keep both files aligned manually. Inspect both files and reconcile independent
+changes before updating shared instructions.
 
 ### Initialization scripts
 
@@ -65,69 +61,14 @@ Run `./init` to create an empty `.github/AGENT.md` at the project root.
 It also creates root `PROGRESS.md` and `DECISIONS.md` with their respective templates.
 It creates `.github/` if needed and preserves existing files' contents.
 
-To initialize a project's `.github/AGENTS.md` template, run with Node.js:
-
-```sh
-node scripts/create-agents.js
-```
-
-By default, the script creates `.github/AGENTS.md` in the current directory.
-To initialize another project from this checkout:
-
-```sh
-node scripts/create-agents.js /path/to/project
-```
-
-The script creates `.github/` if needed and refuses to overwrite an existing
-`AGENTS.md`, reporting the error with exit status 1. The template contains the
-Python 3.11/FastAPI/PostgreSQL 15 overview, Make commands, hard constraints, and
-topic documentation links. Adapt these examples to the target project's stack;
-the script does not create a Makefile or the linked documentation.
-It leaves the synchronized root agent instructions unchanged.
-
-These scripts do not register a slash command with an agent tool; the `/init`
-skill is documented above. Run the generator's tests with
-`node --test scripts/create-agents.test.js`.
-
-### Markdown line limit
-
-Check a Markdown file inside this repository's `docs/` directory with Node.js:
-
-```sh
-node scripts/check-markdown-lines.js docs/PROGRESS.md
-```
-
-The script prints `true` for files with at most 150 lines. Otherwise it prints
-the reason to stderr before printing `false` to stdout, and exits with status 1
-(status 0 on success). Blank lines count; a final newline does not add an extra
-line. Paths are relative to the current directory, or absolute.
-
-JavaScript callers can import `checkMarkdownLineLimit` from the script; it
-returns a boolean and prints a diagnostic on failure. Run its tests with
-`node --test scripts/check-markdown-lines.test.js`.
-
-### AGENTS.md line limit
-
-Check the repository's root `AGENTS.md` against a 200-line maximum:
-
-```sh
-node scripts/check-agents-lines.js
-```
-
-The script prints a success message or failure reason before printing the
-boolean result. It exits with status 0 for `true` and 1 for `false`, including
-read errors. It locates `AGENTS.md` relative to the script, regardless of the
-current directory, and uses the same line-counting rules as the Markdown check.
-
-JavaScript callers can import `checkAgentsLineLimit` from the script; it prints
-a message before returning a boolean. Run both checkers' tests with
-`node --test scripts/check-markdown-lines.test.js scripts/check-agents-lines.test.js`.
+This script does not register a slash command with an agent tool; the `/init`
+skill is documented above.
 
 ## License
 
 Veloce is available under the [MIT License](LICENSE), with the exception of the
 Caveman-derived response-style guidance. Its attribution and license notices are
-in [third_party/caveman](third_party/caveman/NOTICE).
+in [skills/caveman/NOTICE](skills/caveman/NOTICE).
 
 <p align="center">
   <em>In memory of the software craftsmen who laid the foundations for today's technology and agentic revolution.</em>

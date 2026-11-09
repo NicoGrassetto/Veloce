@@ -41,24 +41,19 @@ accuracy; clarity wins over brevity.
   rest of the session unless they request the concise style again.
 
 This style is modified from [Caveman v4.1.0](https://github.com/JuliusBrussee/caveman/tree/v4.1.0),
-Copyright 2026 Julius Brussee; see `third_party/caveman/` for source and license
+Copyright 2026 Julius Brussee; see `skills/caveman/NOTICE` for source and license
 notices. It applies to conversational replies; remove it if the project no
 longer wants concise-by-default agent responses.
 
 ## Shared agent instructions
 
-`AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` contain the same
-project-wide instructions. Before synchronizing, inspect all three files and
-reconcile independent changes rather than overwriting them.
+`AGENTS.md` and `.github/copilot-instructions.md` contain the same project-wide
+instructions. Keep both files aligned manually. Before updating them, inspect
+both files and reconcile independent changes rather than overwriting them.
 
-In this repository, select a reconciled source and run, for example:
-
-```sh
-python3 scripts/sync-agent-instructions.py --source AGENTS.md
-```
-
-The GitHub Actions workflow also synchronizes these files and stops when
-multiple changed sources conflict.
+Manual synchronization keeps the supported formats consistent without a
+repository script or workflow. This applies whenever shared instructions
+change; replace it if automated synchronization is introduced.
 
 ## Session workflow
 
