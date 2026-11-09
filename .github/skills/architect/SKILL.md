@@ -1,4 +1,4 @@
-Use case diagram(s) - if relevant: 
+Use case diagram(s) - if relevant: show the interactions between the system and its environment
 Activity diagram(s) - if relevant: show the activities in a process or in data processing.
 State diagram(s) - if relevant: show how the system reacts to internal and external events.
 Sequence diagram(s) - if relevant: show interactions between actors and the system and between system components.

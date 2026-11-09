@@ -3,7 +3,8 @@
 ## Architect skill content (2026-11-09)
 
 - Added `.github/skills/architect/SKILL.md` with only the five requested lines.
-- Verification: exact content comparison, including the first line's trailing space.
+- Completed the use case diagram line with the requested system/environment description.
+- Verification: exact first-line comparison and `git diff --check`.
 - Metadata was intentionally omitted to preserve the requested content.
 - No remaining work for this addition.
 
