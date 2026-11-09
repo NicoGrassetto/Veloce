@@ -33,3 +33,15 @@
 - Files or artifacts updated: .github/skills/, README.md, .github/copilot-instructions.md, PROGRESS.md.
 - Known risk or unresolved issue: Skill discovery depends on the agent tool.
 - Next best step: No remaining work for this move.
+
+### Session 003
+
+- Date: 2026-11-09
+- Goal: Add root `FEATURES.md`.
+- Completed: Added the file without feature entries.
+- Verification run: File existence and `git diff --check`.
+- Evidence captured: `FEATURES.md` exists at the repository root.
+- Commits:
+- Files or artifacts updated: FEATURES.md, PROGRESS.md.
+- Known risk or unresolved issue: None for file creation.
+- Next best step: No remaining work for this addition.
