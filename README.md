@@ -32,8 +32,8 @@ Veloce is intentionally tool- and model-agnostic. The goal is not to prescribe a
 
 ### Project initialization
 
-Invoke `/init` to initialize project documentation using the
-[init skill](skills/init/SKILL.md). It creates or updates
+Use the [init skill instructions](skills/init/SKILL.md) to initialize project
+documentation. They create or update
 `docs/DECISIONS.md`, `docs/ARCHITECTURE.md`, root `PROGRESS.md` and
 `docs/FEATURES.md` with the project's decisions, architecture, current state and
 verifiable feature list. Existing documentation and history are preserved;
@@ -41,8 +41,8 @@ unknowns and unavailable verification commands are recorded explicitly.
 It also creates a root `AGENTS.md` with project-specific agent instructions
 when that file does not already exist, leaving existing instructions unchanged.
 
-The skill lives in `skills/init` and is exposed for project skill discovery
-through `.agents/skills/init`.
+The skill lives in `skills/init`. Automatic project skill discovery is not
+configured; `/init` availability depends on the agent tool's configuration.
 
 ### Agent instructions
 

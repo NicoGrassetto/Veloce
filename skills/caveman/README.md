@@ -9,10 +9,9 @@ This is the standalone Caveman skill by Julius Brussee, pinned to
 and distributed under its [MIT license](LICENSE). No plugin, runtime, or
 session-start hook is installed.
 
-The canonical files live in `skills/caveman`; `.agents/skills/caveman` makes
-the skill discoverable to agents that support project skills. An agent may
-load it when a request matches its description, or when asked to use
-caveman mode.
+The canonical files live in `skills/caveman`. Automatic project skill discovery
+is not configured. Load or install the skill through your agent tool before
+using the commands below.
 
 ## What it does
 
