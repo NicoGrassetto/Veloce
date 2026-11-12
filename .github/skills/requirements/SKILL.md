@@ -1,12 +1,14 @@
 ---
 name: requirements
-description: Create or revise docs/REQUIREMENTS.md using an ISO/IEC/IEEE 29148:2018 software requirements specification structure. Use when the user asks to document or change software requirements.
+description: Create docs/REQUIREMENTS.md or refine an initial draft using an ISO/IEC/IEEE 29148:2018 software requirements specification structure. Use for initial software requirements. Use requirements-change for changes to established requirements.
 ---
 
 # Requirements
 
 Create or revise a software requirements specification (SRS) in
-`docs/REQUIREMENTS.md`.
+`docs/REQUIREMENTS.md`. Changes to established requirements belong to
+`requirements-change`, which assesses their impact and invokes
+`requirements-validation`. This authoring skill retains its single-file boundary.
 
 ## File boundary
 

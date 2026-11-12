@@ -1,5 +1,23 @@
 # PROGRESS.md
 
+## Requirements change management and validation rename (2026-11-12)
+
+- Added `/requirements-change` for proposed additions, revisions, and removals
+  with cost, schedule, effort, dependency, feasibility, and risk analysis.
+- Required a user decision on the proposal and its disclosed impacts before
+  applying changes, followed by automatic requirements validation.
+- Renamed `/requirements-validate` to `/requirements-validation`, including its
+  skill directory, metadata, and command trigger.
+- Preserved the requirements-and-tests write boundary for both change management
+  and validation. Initial requirements authoring keeps its single-file boundary.
+- Updated initial authoring guidance to distinguish established-requirement
+  changes from initial drafts.
+- Verification: checked skill metadata, renamed references, local links,
+  five validation checks, invocation fallback, and `git diff --check`.
+- No Makefile, automated tests, or runtime skill invocation check is configured.
+- No remaining work for these instructions; runtime discovery and chained
+  invocation remain unverified.
+
 ## Requirements validation file scope (2026-11-12)
 
 - Updated `/requirements-validate` to allow changes only to

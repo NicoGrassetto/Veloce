@@ -1,6 +1,6 @@
 ---
-name: requirements-validate
-description: Validate docs/REQUIREMENTS.md for validity, consistency, completeness, realism, and verifiability. Use when the user types /requirements-validate or asks to review whether requirements reflect current user needs and can be delivered and verified.
+name: requirements-validation
+description: Validate docs/REQUIREMENTS.md for validity, consistency, completeness, realism, and verifiability. Use when the user types /requirements-validation or asks to review whether requirements reflect current user needs and can be delivered and verified.
 ---
 
 # Requirements validation
@@ -15,6 +15,8 @@ proof that requirements are valid.
   the repository-root `tests/` directory and its contents. This includes test
   fixtures, generated files, caches, and other command outputs. Writes through
   symlinks must resolve to an allowed path.
+- Honor any narrower write boundary supplied by the calling skill; invoking
+  validation does not expand the caller's permissions.
 - Read other files as context, but do not modify application code, dependency
   manifests, configuration, progress records, feature lists, other documents,
   or skill files. Do not stage or commit changes.
