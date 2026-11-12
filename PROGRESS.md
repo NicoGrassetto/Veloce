@@ -1,5 +1,19 @@
 # PROGRESS.md
 
+## Requirements validation file scope (2026-11-12)
+
+- Updated `/requirements-validate` to allow changes only to
+  `docs/REQUIREMENTS.md` and files under the repository-root `tests/` directory.
+- Allowed evidence-backed corrections and requirement-linked tests while
+  preserving user decisions, unrelated work, and the five validation checks.
+- Restricted command side effects to the same paths and required reporting of
+  unavailable checks or dependencies.
+- Verification: checked the skill metadata, five check categories, file
+  boundaries, and `git diff --check`.
+- No Makefile, automated tests, or runtime skill invocation check is configured.
+- The prior read-only execution boundary is superseded by this change.
+- No remaining work for this scope change; runtime discovery is unverified.
+
 ## Requirements validation skill (2026-11-12)
 
 - Added `.github/skills/requirements-validate/SKILL.md` for
