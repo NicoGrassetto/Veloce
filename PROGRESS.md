@@ -1,5 +1,20 @@
 # PROGRESS.md
 
+## Architect skill instructions (2026-11-12)
+
+- Added `/architect` metadata and instructions to create or update only
+  `docs/ARCHITECTURE.md` when the skill runs.
+- Added level-three design-decision headings for performance, security, safety,
+  availability, and maintainability, with maintainability optional when irrelevant.
+- Added optional architectural patterns and an embedded architecture diagram,
+  with original-source links for patterns beyond the user's examples.
+- Preserved the existing optional use case, activity, state, sequence, and class
+  diagram guidance.
+- Verification: checked skill metadata, write boundary, heading levels, pattern
+  source requirements, preserved diagrams, and `git diff --check`.
+- No Makefile, automated tests, or runtime skill invocation check is configured.
+- The architecture document remains unchanged; runtime discovery is unverified.
+
 ## Requirements change management and validation rename (2026-11-12)
 
 - Added `/requirements-change` for proposed additions, revisions, and removals
