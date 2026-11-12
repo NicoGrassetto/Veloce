@@ -1,5 +1,14 @@
 # PROGRESS.md
 
+## Requirements skill placeholder (2026-11-12)
+
+- Removed `.github/skills/requirements-engineering/` and its reference documents.
+- Replaced it with empty `.github/skills/requirements/SKILL.md`, as requested.
+- Verification: empty-file check, removed-file checks, and `git diff --check`.
+- No Makefile, automated tests, or executable verification command is configured.
+- The placeholder has no metadata or instructions; it is not a usable skill yet.
+- No remaining work for this replacement.
+
 ## Architect skill content (2026-11-09)
 
 - Added `.github/skills/architect/SKILL.md` with only the five requested lines.
