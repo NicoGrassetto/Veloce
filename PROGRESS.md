@@ -1,5 +1,19 @@
 # PROGRESS.md
 
+## Architect technology overview (2026-11-12)
+
+- Added a brief technology-stack section to `/architect` and its output outline,
+  covering relevant technologies, roles, and selection status without requiring
+  an exhaustive dependency inventory.
+- Required evidence-backed choices, known versions, and a distinction between
+  existing, accepted, proposed, and undecided technologies.
+- Added a short `docs/ARCHITECTURE.md` overview of Veloce's Markdown, YAML skill
+  metadata, Git, and GitHub usage without inventing an application stack.
+- The architecture document remains a partial record, not a complete design.
+- Verification: checked section coverage, source reference, preserved skill
+  boundaries, and `git diff --check`.
+- No Makefile, automated tests, or runtime skill invocation check is configured.
+
 ## Architect UML diagrams and use cases (2026-11-12)
 
 - Added relevant UML use-case, sequence, and class diagram guidance to

@@ -1,12 +1,12 @@
 ---
 name: architect
-description: Design and document a project's architecture in docs/ARCHITECTURE.md. Use when the user types /architect or asks to create or revise architectural documentation.
+description: Design and document a project's architecture, technology stack, and design decisions in docs/ARCHITECTURE.md. Use when the user types /architect or asks to create or revise architectural documentation.
 ---
 
 # Architect
 
-Describe the system's architecture, its design decisions, and the reasons for
-them in `docs/ARCHITECTURE.md`.
+Describe the system's architecture, technology stack, design decisions, and
+the reasons for them in `docs/ARCHITECTURE.md`.
 
 ## File boundary
 
@@ -36,6 +36,20 @@ them in `docs/ARCHITECTURE.md`.
    requirements or design choices would materially affect the architecture.
 4. Do not silently replace an existing architecture. For a significant design
    choice, explain the options and tradeoffs and obtain the user's decision.
+
+## Technology stack
+
+Include a brief `## Technology stack` section in `docs/ARCHITECTURE.md`.
+Summarize the languages, runtimes, frameworks, storage, deployment platform,
+and important integrations or tools that will be used, where relevant. Use
+a short paragraph or compact table with each technology's role and selection
+status; do not inventory every dependency. Include versions only when known.
+
+Base the summary on project evidence and user decisions. Distinguish existing
+technologies from accepted future choices, proposals, and undecided items.
+Explain each choice briefly and keep it consistent with the components and
+design decisions. Ask about material unresolved choices rather than assuming
+a stack, and do not install or configure the technologies.
 
 ## Architectural patterns and diagram
 
@@ -160,6 +174,8 @@ project while retaining `## Design decisions` and its level-three headings:
 
 ## Overview
 
+## Technology stack
+
 ## Architecture
 ### Architecture diagram
 
@@ -204,7 +220,8 @@ choices from proposals and decisions the user has accepted.
 Check that each applicable diagram uses standard UML notation and agrees with
 its use-case tables and confirmed requirements. Check that the architectural
 decisions address those requirements and each required pattern source appears
-immediately below its diagram. Record unresolved questions and rendering
-limitations in `docs/ARCHITECTURE.md` and report them in chat. Do not claim a
-design is approved or implemented without evidence. Confirm that the skill
-changed no other file.
+immediately below its diagram. Confirm the technology summary matches the
+evidence and clearly labels proposed or undecided choices. Record unresolved
+questions and rendering limitations in `docs/ARCHITECTURE.md` and report them
+in chat. Do not claim a design is approved or implemented without evidence.
+Confirm that the skill changed no other file.
