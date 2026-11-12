@@ -1,5 +1,19 @@
 # PROGRESS.md
 
+## Requirements validation skill (2026-11-12)
+
+- Added `.github/skills/requirements-validate/SKILL.md` for
+  `/requirements-validate`.
+- Defined validity, consistency, completeness, realism, and verifiability checks,
+  including changing user needs, budget, schedule, and acceptance criteria.
+- Kept execution read-only with findings and clarification in chat. Missing
+  evidence remains unresolved; review does not imply stakeholder approval.
+- Verification: inspected metadata, coverage of all five checks, file boundaries,
+  and reporting rules; ran `git diff --check`.
+- No Makefile, automated tests, or runtime skill invocation check is configured.
+- The new slash command may require skill discovery to refresh in the host.
+- No remaining work for this skill addition; runtime discovery is unverified.
+
 ## Requirements skill instructions (2026-11-12)
 
 - Added metadata and instructions to `.github/skills/requirements/SKILL.md`.
