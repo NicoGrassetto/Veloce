@@ -1,5 +1,18 @@
 # PROGRESS.md
 
+## Requirements skill instructions (2026-11-12)
+
+- Added metadata and instructions to `.github/skills/requirements/SKILL.md`.
+- Restricted skill execution to changing only `docs/REQUIREMENTS.md`, including
+  any questions, decisions, traceability, and approval records.
+- Added an SRS outline adapted from ISO/IEC/IEEE 29148:2018, selected by the user.
+- Left `docs/REQUIREMENTS.md` unchanged; this task authors the skill, not an SRS.
+- Verification: inspected the file boundary, outline, and source references;
+  ran `git diff --check`.
+- No Makefile, automated tests, or executable verification command is configured.
+- Full standards conformance and runtime skill behavior have not been verified.
+- No remaining work for these skill instructions.
+
 ## Requirements skill placeholder (2026-11-12)
 
 - Removed `.github/skills/requirements-engineering/` and its reference documents.
