@@ -1,5 +1,20 @@
 # PROGRESS.md
 
+## Architect UML diagrams and use cases (2026-11-12)
+
+- Added relevant UML use-case, sequence, and class diagram guidance to
+  `/architect`, including standard notation and requirement traceability.
+- Added a Markdown description table for every distinct use case, including
+  actors, flows, preconditions, postconditions, and related requirements.
+- Preserved the single-file scope and optional activity and state diagrams.
+- Documented that GitHub does not natively render PlantUML code blocks; the
+  skill must report unsupported rendering instead of substituting a non-UML
+  use-case flowchart or using an external rendering service.
+- Verification: checked the document outline, table fields, UML guidance,
+  file boundary, and `git diff --check`.
+- No Makefile, automated tests, or runtime skill invocation check is configured.
+- The architecture document remains unchanged; runtime rendering is unverified.
+
 ## Architect skill instructions (2026-11-12)
 
 - Added `/architect` metadata and instructions to create or update only

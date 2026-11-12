@@ -62,14 +62,92 @@ alternative with the user's agreement. Create project-specific diagrams; adapt
 an existing diagram only when its license or permission allows it, and link its
 original source directly below the diagram.
 
-Include other diagrams only when relevant:
+## UML diagrams and use-case descriptions
 
-- Use case diagrams show interactions between the system and its environment.
-- Activity diagrams show activities in a process or in data processing.
-- State diagrams show how the system reacts to internal and external events.
-- Sequence diagrams show interactions between actors and the system, and
-  between system components.
-- Class diagrams show object classes and their associations.
+When relevant, include one or more use-case diagrams, a tabular description of
+each distinct use case, sequence diagrams, and class diagrams. Choose diagrams
+that explain the system rather than adding them merely to fill a template.
+Use standard [UML 2.5.1 notation](https://www.omg.org/spec/UML/2.5.1/About-UML)
+for all of these diagrams. Relate each diagram and description to confirmed
+requirements and distinguish proposed design from implemented behavior.
+
+### Use-case diagrams
+
+When the system has relevant actors and goals, show their interactions with the
+system in one or more use-case diagrams. Use UML actors outside a named system
+boundary, use-case ellipses inside it, and association lines between actors
+and their use cases. Where applicable, show a dashed `<<include>>` arrow from
+the base use case to the included use case, a dashed `<<extend>>` arrow from
+the extending use case to the base use case, and a generalization line with a
+hollow triangle pointing to the general actor or use case.
+
+Give each distinct use case a stable identifier and a user-goal-oriented name.
+Use the same identifiers in the diagrams, descriptions, and related sequence
+diagrams. If a use case appears in several diagrams, provide one shared
+description rather than conflicting copies.
+
+### Use-case description tables
+
+For each use case shown, add a Markdown table with these fields. This table is a
+documentation convention; UML does not prescribe this particular table format.
+
+| Field | Content |
+|---|---|
+| ID and name | Stable use-case identifier and goal-oriented name. |
+| Scope and goal | System boundary and outcome of value to the actor. |
+| Actors | Primary actor and any supporting actors. |
+| Trigger | Event that starts the use case. |
+| Preconditions | Conditions required before the use case begins. |
+| Main success scenario | Numbered actor and system steps leading to the goal. |
+| Alternative and exception flows | Branches or failures, linked to the relevant main-scenario step. |
+| Postconditions | State after successful completion and, when applicable, failure. |
+| Related requirements | Requirement identifiers or documented sources. |
+| Open questions | Missing or unconfirmed details, when applicable. |
+
+Use confirmed information; identify unknowns instead of inventing details.
+Ensure the actors, flows, and outcomes agree with the diagrams and requirements.
+
+### Sequence diagrams
+
+When interactions or message ordering are relevant, show participants and UML
+lifelines, messages in time order, and activation and return notation as
+appropriate. Distinguish synchronous calls with filled arrowheads,
+asynchronous messages with open arrowheads, and returns with dashed lines and
+open arrowheads. Use standard combined fragments such as `alt`, `opt`, or
+`loop` where needed. Connect each diagram to the use-case identifier or
+requirement it explains.
+
+### Class diagrams
+
+When class or domain-object structure is relevant, show UML classes with
+appropriate name, attribute, and operation compartments. Include supported
+types, visibility, associations, roles, and multiplicities when known. Show
+generalization with a hollow triangle at the parent, aggregation with a hollow
+diamond at the whole, composition with a filled diamond at the whole, and
+dependency with a dashed arrow when applicable. Do not infer relationships or
+multiplicities without evidence.
+
+### Other diagrams
+
+- Activity diagrams, if relevant, show activities in a process or data processing.
+- State diagrams, if relevant, show how the system reacts to internal and
+  external events.
+
+### Rendering and scope
+
+Keep editable diagram source inside `docs/ARCHITECTURE.md`, not in separate
+diagram or image files. Use a renderer that supports the required UML notation.
+Mermaid can represent sequence and class diagrams when its supported notation
+is sufficient. PlantUML can represent use-case, sequence, and class diagrams,
+but GitHub Markdown does not natively render PlantUML code blocks.
+
+If the target viewer cannot render a needed UML diagram, retain its source in
+the document, clearly mark it as unrendered, and report the limitation. Ask the
+user about a compatible viewer or an explicit scope change when needed; do not
+silently replace UML use-case notation with a non-UML flowchart or claim an
+unrendered diagram was displayed. Do not send project content to an external
+rendering service. Verify rendering only when an available local tool can do so
+without writing outside the permitted file boundary.
 
 ## Document structure
 
@@ -89,6 +167,14 @@ project while retaining `## Design decisions` and its level-three headings:
 
 ## Data and control flow
 
+## Use cases
+### Use-case diagram(s)
+### Use-case descriptions
+
+## Sequence diagrams
+
+## Class diagrams
+
 ## Design decisions
 ### Performance
 ### Security
@@ -98,6 +184,10 @@ project while retaining `## Design decisions` and its level-three headings:
 
 ## Risks, assumptions, and open questions
 ```
+
+Include the use-case, sequence, and class sections when relevant. If a section
+is not relevant, it may be omitted; explain the omission in the document rather
+than inventing diagrams or use cases.
 
 Keep `### Performance`, `### Security`, `### Safety`, and `### Availability`.
 If one is not relevant, say so and explain why rather than inventing a decision.
@@ -111,8 +201,10 @@ choices from proposals and decisions the user has accepted.
 
 ## Finish
 
-Check that the diagram and descriptions agree, the decisions address the
-confirmed requirements, and each required pattern source appears immediately
-below its diagram. Record unresolved questions in `docs/ARCHITECTURE.md` and
-report them in chat. Do not claim a design is approved or implemented without
-evidence. Confirm that the skill changed no other file.
+Check that each applicable diagram uses standard UML notation and agrees with
+its use-case tables and confirmed requirements. Check that the architectural
+decisions address those requirements and each required pattern source appears
+immediately below its diagram. Record unresolved questions and rendering
+limitations in `docs/ARCHITECTURE.md` and report them in chat. Do not claim a
+design is approved or implemented without evidence. Confirm that the skill
+changed no other file.
